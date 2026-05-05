@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KOTA KU | The Ultimate Encyclopedia of Malang Raya</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@1,700&family=Montserrat:wght@300;400;700&family=Playfair+Display:ital,wght@0,700;1,900&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ================= CSS INTERNAl ================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --gold: #d4af37;
+            --dark: #0a0a0a;
+            --glass: rgba(255, 255, 255, 0.05);
+            --cream: #f5f5dc;
+            --accent-gold: #996515;
+            --deep-blue: #0b132b;
+        }
+
+        body {
+            background-color: var(--dark);
+            background-image: url('https://www.transparenttextures.com/patterns/dark-matter.png');
+            color: var(--cream);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* --- QUICK NAV (AUTO SCROLL) --- */
+        .quick-nav {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(10, 10, 10, 0.95);
+            border: 2px solid var(--gold);
+            padding: 20px;
+            z-index: 1000;
+            border-radius: 15px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            max-width: 200px;
+        }
+
+        .nav-title {
+            font-family: 'Bodoni Moda', serif;
+            color: var(--gold);
+            text-align: center;
+            border-bottom: 2px solid var(--gold);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .quick-nav ul { list-style: none; }
+        .quick-nav ul li { margin-bottom: 10px; }
+        .quick-nav ul li a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: 0.3s;
+            display: block;
+            text-transform: uppercase;
+        }
+        .quick-nav ul li a:hover { 
+            color: var(--gold); 
+            transform: translateX(8px);
+        }
+
+        /* --- HERO HEADER --- */
+        header {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(10,10,10,1)), 
+                        url('https://images.pexels.com/photos/210243/pexels-photo-210243.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover no-repeat fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 4px solid var(--gold);
+        }
+
+        .hero-layer { text-align: center; padding: 20px; }
+
+        .main-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(5rem, 15vw, 10rem);
+            color: var(--gold);
+            text-shadow: 4px 4px 30px rgba(212, 175, 55, 0.6);
+            margin-bottom: -10px;
+        }
+
+        .hero-tagline {
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            font-size: clamp(1rem, 3vw, 1.4rem);
+            color: white;
+            opacity: 0.9;
+        }
+
+        /* --- MAIN WRAPPER --- */
+        .main-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px;
+        }
+
+        .content-section {
+            margin-bottom: 150px;
+            padding: 60px;
+            border-radius: 40px;
+            background: linear-gradient(145deg, rgba(255,255,255,0.03), rgba(0,0,0,0.4));
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        .gold-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: var(--gold);
+            margin-bottom: 50px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .mega-text p {
+            margin-bottom: 30px;
+            text-align: justify;
+            font-size: 1.15rem;
+            color: #ddd;
+        }
+
+        /* --- SPLIT CONTENT --- */
+        .split-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .image-frame {
+            border: 4px solid var(--gold);
+            padding: 10px;
+            border-radius: 20px;
+            background: #000;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.2);
+        }
+
+        .image-frame img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+            transition: 0.8s ease;
+        }
+
+        .image-frame:hover img {
+            transform: scale(1.1);
+        }
+
+        .title-fancy {
+            font-family: 'Bodoni Moda', serif;
+            font-style: italic;
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            color: var(--gold);
+        }
+
+        /* --- LISTS & GRID --- */
+        .mega-list { list-style: none; }
+        .mega-list li {
+            margin-bottom: 25px;
+            padding-left: 35px;
+            position: relative;
+            font-size: 1.1rem;
+        }
+        .mega-list li::before {
+            content: "✦";
+            color: var(--gold);
+            position: absolute;
+            left: 0;
+            font-size: 1.5rem;
+        }
+
+        .grid-adat {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .adat-item {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 40px;
+            border-radius: 25px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: 0.5s;
+        }
+
+        .adat-item:hover {
+            background: rgba(212, 175, 55, 0.1);
+            border-color: var(--gold);
+            transform: translateY(-15px);
+        }
+
+        .adat-item h3 {
+            color: var(--gold);
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+        }
+
+        /* --- GASTRONOMI SUPER DETAILED --- */
+        .gastronomi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .food-card-premium {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--accent-gold);
+            border-radius: 20px;
+            padding: 30px;
+            transition: 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .food-card-premium:hover {
+            background: rgba(212, 175, 55, 0.1);
+            border-color: var(--gold);
+            transform: translateY(-10px);
+        }
+
+        .food-card-premium h4 {
+            color: var(--gold);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .food-card-premium p {
+            font-size: 0.95rem;
+            color: #ccc;
+            text-align: justify;
+        }
+
+        .food-tag {
+            display: inline-block;
+            background: var(--gold);
+            color: black;
+            padding: 2px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 120px 20px;
+            background: #000;
+            border-top: 5px solid var(--gold);
+        }
+
+        .footer-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 5rem;
+            color: var(--gold);
+        }
+
+        .gold-line {
+            width: 300px;
+            height: 2px;
+            background: var(--gold);
+            margin: 30px auto;
+        }
+
+        /* --- MOBILE RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .split-content, .grid-adat { grid-template-columns: 1fr; }
+            .quick-nav { display: none; }
+            .content-section { padding: 30px; }
+            .main-title { font-size: 4rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="quick-nav">
+        <div class="nav-title">KONTEN</div>
+        <ul>
+            <li><a href="#sejarah-mega">📜 Sejarah Nusantara</a></li>
+            <li><a href="#malang-heritage">🏢 Malang: Heritage</a></li>
+            <li><a href="#batu-nature">⛰️ Batu: Nature</a></li>
+            <li><a href="#adat-istiadat">🎎 Adat & Budaya</a></li>
+            <li><a href="#rahasia-arsitektur">🏗️ Arsitektur Kota</a></li>
+            <li><a href="#kuliner-legend">🍜 Gastronomi Legendaris</a></li>
+        </ul>
+    </nav>
+
+    <header id="top">
+        <div class="hero-layer">
+            <h1 class="main-title">Kota Ku</h1>
+            <p class="hero-tagline">Legenda Singhasari • Pesona Batu • Jiwa Malang</p>
+        </div>
+    </header>
+
+    <div class="main-wrapper">
+        
+        <section id="sejarah-mega" class="content-section">
+            <h2 class="gold-title">📜 Sejarah Agung Malang Raya</h2>
+            <div class="mega-text">
+                <p><strong>Zaman Kerajaan Kuno:</strong> Malang Raya adalah jantung peradaban Jawa Timur purba. Menurut Prasasti Dinoyo (760 M), Kerajaan Kanjuruhan di bawah Raja Gajayana telah menetapkan standar pemerintahan yang tinggi. Wilayah ini bukan sekadar pemukiman, melainkan pusat spiritual Hindu-Buddha yang suci.</p>
+                <p><strong>Imperium Singhasari:</strong> Di sinilah Ken Arok mendirikan Dinasti Rajasa, yang keturunannya kelak menjadi penguasa Majapahit. Legenda Keris Mpu Gandring dan kisah cinta Ken Dedes berakar kuat di tanah ini. Candi Singosari menjadi bukti kecanggihan teknologi pahat batu abad ke-13 yang tak tertandingi di masanya.</p>
+                <p><strong>Arti Nama "Malang":</strong> Berasal dari "Malangkucecwara", sebuah gelar sakral yang berarti "Tuhan telah menghancurkan yang bathil dan menegakkan yang benar". Nama ini mencerminkan tekad masyarakat Malang yang jujur, keras, dan pantang menyerah terhadap ketidakadilan.</p>
+                <p><strong>Era Kolonialisme:</strong> Belanda mengubah Malang menjadi "Parijs van Oost-Java". Dengan iklim sejuk dan tanah subur, Malang dijadikan pusat perkebunan tebu dan kopi dunia. Pembangunan Stasiun Malang Kotabaru dan Gereja Kayutangan menjadi saksi bisu kemewahan era *Indische*.</p>
+            </div>
+        </section>
+
+        <section id="malang-heritage" class="content-section">
+            <div class="split-content">
+                <div class="image-frame">
+                    <img src="Alun-Alun-Tugu-Malang-Indonesia-featured-1244x700.jpg" alt="Arsitektur Malang">
+                </div>
+                <div class="info-rich">
+                    <h2 class="title-fancy">Malang: Episentrum Peradaban</h2>
+                    <p>Malang adalah kuali peleburan antara kemegahan masa lalu dan dinamika kota pelajar. Lima kecamatan utamanya memiliki peran krusial:</p>
+                    <ul class="mega-list">
+                        <li><strong>Klojen:</strong> Pusat sejarah dengan Ijen Boulevard yang dirancang Thomas Karsten, taman-taman asri, dan Balai Kota megah bergaya kolonial.</li>
+                        <li><strong>Lowokwaru:</strong> Jantung pendidikan. Tempat berkumpulnya ribuan mahasiswa dari berbagai suku bangsa yang menciptakan keberagaman sosiokultural yang tinggi.</li>
+                        <li><strong>Blimbing:</strong> Pusat ekonomi dan gerbang masuk utama dari sisi Utara yang menghubungkan Malang dengan Surabaya.</li>
+                        <li><strong>Sukun & Kedungkandang:</strong> Kawasan industri strategis dan perluasan pemukiman modern yang tetap mempertahankan nuansa hijau.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="batu-nature" class="content-section">
+            <div class="split-content">
+                <div class="info-rich">
+                    <h2 class="title-fancy">Batu: The Switzerland of Java</h2>
+                    <p>Batu adalah "Ruang Bernapas" Jawa Timur. Dahulu merupakan wilayah administrasi Kabupaten Malang, namun karena potensi pariwisatanya yang luar biasa, Batu resmi menjadi kota mandiri pada tahun 2001.</p>
+                    <ul class="mega-list">
+                        <li><strong>Legenda Mbah Wastu:</strong> Nama Batu diambil dari Syekh Abu Ghonaim (Mbah Wastu), ulama sufi penyebar Islam yang menetap di kaki Gunung Panderman.</li>
+                        <li><strong>Agrikultur:</strong> Dikenal sebagai penghasil apel varietas Rome Beauty dan Manalagi. Udara dinginnya juga menjadikan Batu sebagai sentra tanaman hias terbesar di Asia Tenggara.</li>
+                        <li><strong>Wisata Modern:</strong> Batu kini memiliki kompleks wisata edukasi terbesar di Indonesia, Jatim Park Group, serta Museum Angkut yang berstandar internasional.</li>
+                    </ul>
+                </div>
+                <div class="image-frame">
+                    <img src="IMG-20230226-WA0027-2604471983.jpg" alt="Batu Nature">
+                </div>
+            </div>
+        </section>
+
+        <section id="adat-istiadat" class="content-section">
+            <h2 class="gold-title">🎎 Budaya & Adat Istiadat Leluhur</h2>
+            <div class="grid-adat">
+                <div class="adat-item">
+                    <h3>Boso Walikan (Bahasa Terbalik)</h3>
+                    <p>Identitas Arek Malang yang lahir sebagai strategi militer saat Agresi Militer Belanda. Contoh: "Ayas Arema" (Saya Arek Malang). Bahasa ini tetap lestari sebagai perekat persaudaraan.</p>
+                </div>
+                <div class="adat-item">
+                    <h3>Wayang Topeng Malangan</h3>
+                    <p>Kesenian khas yang menggabungkan tari dan drama. Berbeda dengan Jawa Tengah, topeng Malangan lebih ekspresif dengan warna mencolok yang melambangkan emosi manusia.</p>
+                </div>
+                <div class="adat-item">
+                    <h3>Kesenian Bantengan</h3>
+                    <p>Seni bela diri spiritual yang menggambarkan kekuatan alam liar pegunungan. Penari Bantengan mengenakan tanduk asli dan menari dengan iringan musik pencak yang enerjik.</p>
+                </div>
+                <div class="adat-item">
+                    <h3>Tradisi Bersih Desa</h3>
+                    <p>Upacara syukur tahunan yang dilakukan oleh desa-desa agraris di Malang dan Batu dengan mengarak hasil bumi sebagai persembahan bagi alam semesta.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="rahasia-arsitektur" class="content-section">
+            <h2 class="gold-title">🏗️ Arsitektur & Keanekaragaman</h2>
+            <div class="mega-text">
+                <p>Salah satu yang membuat Malang dan Batu unik adalah **Tata Kota 'Garden City'**. Thomas Karsten, arsitek ternama Belanda, merancang Malang agar tidak panas dengan membangun koridor hijau yang luas. Struktur jalan yang memutar (roundabout) di depan Balai Kota dirancang agar angin gunung bisa masuk ke pusat kota dengan lancar.</p>
+                <p>Keanekaragaman flora di sini juga mencengangkan. Karena berada di pertemuan beberapa pegunungan (Arjuno-Welirang, Kawi, dan Bromo-Tengger), Malang Raya memiliki spesies endemik Elang Jawa yang sangat langka. Upaya pelestarian hutan lindung di Batu menjadi kunci agar pasokan air ke seluruh Jawa Timur tetap terjaga.</p>
+            </div>
+        </section>
+
+        <section id="kuliner-legend" class="content-section">
+            <h2 class="gold-title">🍜 Gastronomi Legendaris Malang Raya</h2>
+            <div class="mega-text">
+                <p>Malang Raya bukan hanya soal pemandangan, tapi juga surga bagi lidah para petualang rasa. Berikut adalah katalog kuliner yang telah melegenda dan menjadi bagian dari sejarah identitas kota:</p>
+            </div>
+
+            <div class="gastronomi-grid">
+                <div class="food-card-premium">
+                    <span class="food-tag">Ikonik</span>
+                    <h4>Bakso Malang Authentic</h4>
+                    <p>Berbeda dengan bakso daerah lain, varian Malang menyajikan keharmonisan antara bakso halus, bakso urat, gorengan mekar, siomay, dan kekian dalam kaldu bening yang sangat gurih.</p>
+                </div>
+
+                <div class="food-card-premium">
+                    <span class="food-tag">Heritage</span>
+                    <h4>Cwie Mie Malang Asli</h4>
+                    <p>Mi tipis kenyal dengan topping ayam cincang halus yang gurih, disajikan dengan selada segar dan kulit pangsit goreng. Cita rasa Tionghoa yang telah berakulturasi sempurna dengan lidah lokal.</p>
+                </div>
+
+                <div class="food-card-premium">
+                    <span class="food-tag">Tradisional</span>
+                    <h4>Orem-Orem Tempe</h4>
+                    <p>Kuliner khas rakyat Malang berupa irisan tempe goreng yang dimasak dalam kuah santan kental berbumbu kuning, disajikan dengan ketupat dan tauge segar.</p>
+                </div>
+
+                <div class="food-card-premium">
+                    <span class="food-tag">Khas Batu</span>
+                    <h4>Sate Kelinci & Ketan</h4>
+                    <p>Kuliner wajib saat berkunjung ke Kota Batu. Daging kelinci yang empuk dengan bumbu kacang kental, sangat nikmat disantap di tengah dinginnya udara pegunungan.</p>
+                </div>
+
+                <div class="food-card-premium">
+                    <span class="food-tag">Eksotis</span>
+                    <h4>Rawon Nguling</h4>
+                    <p>Sup daging sapi kuah hitam legendaris dengan aroma kluwek yang kuat. Disajikan dengan tauge pendek, sambal terasi, dan telur asin sebagai pelengkap wajib.</p>
+                </div>
+
+                <div class="food-card-premium">
+                    <span class="food-tag">Oleh-Oleh</span>
+                    <h4>Keripik Buah Premium</h4>
+                    <p>Manifestasi kesuburan tanah Batu. Melalui teknologi vacuum frying, buah-buahan segar seperti apel, nangka, dan salak diubah menjadi keripik renyah tanpa menghilangkan rasa aslinya.</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p class="footer-title">KOTA KU</p>
+        <p>Arsip Digital Terlengkap: Malang Raya Heritage & Nature</p>
+        <div class="gold-line"></div>
+        <p>&copy; 2026 - Kemewahan Informasi Tanpa Batas</p>
+    </footer>
+
+</body>
+</html>
